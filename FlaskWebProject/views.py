@@ -69,8 +69,9 @@ def login():
             flash('Invalid username or password')
             app.logger.warning('Failed login attempt.')
             return redirect(url_for('login'))
-        login_user(user, remember=form.remember_me.data)
         app.logger.info('Successful User Login')
+        login_user(user, remember=form.remember_me.data)
+        #app.logger.info('Successful User Login')
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
